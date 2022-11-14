@@ -8,7 +8,6 @@ import java.time.Duration;
 
 public class RentPage {
     private WebDriver driver;
-
     private By date = By.xpath(".//div[@class='react-datepicker-wrapper']/div/input");
     private By date1 = By.xpath(".//div[@class='react-datepicker__week']/div[@aria-label='Choose суббота, 1-е октября 2022 г.']");
     private By time1 = By.xpath(".//div[@class='Dropdown-menu']/div[3]");
@@ -37,7 +36,6 @@ public class RentPage {
             driver.findElement(colourGrey).click();
         }
     }
-
 
     public void sendApproveForRentScooter() {
         new WebDriverWait(driver, Duration.ofSeconds(3))

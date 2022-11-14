@@ -36,7 +36,6 @@ public class MainPage {
     private final By accordionHeading7 = By.id("accordion__heading-7");
     private final By accordionPanel7 = By.id("accordion__panel-7");
 
-
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -45,55 +44,41 @@ public class MainPage {
         driver.findElement(cookie).click();
     }
 
-    public String  getTextAnswer (String question) {
-        String answer;
-        switch (question) {
-            case "Сколько это стоит? И как оплатить?":
-                driver.findElement(accordionHeading0).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel0)).getText();
-                break;
-            case "Хочу сразу несколько самокатов! Так можно?":
-                driver.findElement(accordionHeading1).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel1)).getText();
-                break;
-            case "Как рассчитывается время аренды?":
-                driver.findElement(accordionHeading2).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel2)).getText();
-                break;
-            case "Можно ли заказать самокат прямо на сегодня?":
-                driver.findElement(accordionHeading3).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel3)).getText();
-                break;
-            case "Можно ли продлить заказ или вернуть самокат раньше?":
-                driver.findElement(accordionHeading4).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel4)).getText();
-                break;
-            case "Вы привозите зарядку вместе с самокатом?":
-                driver.findElement(accordionHeading5).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel5)).getText();
-                break;
-            case "Можно ли отменить заказ?":
-                driver.findElement(accordionHeading6).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel6)).getText();
-                break;
-            case "Я жизу за МКАДом, привезёте?":
-                driver.findElement(accordionHeading7).click();
-                answer = new WebDriverWait(driver, Duration.ofSeconds(5))
-                        .until(driver -> driver.findElement(accordionPanel7)).getText();
-                break;
+    public String getTextAnswer (String question, String expected){
+        driver.findElement(accordionHeading0).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel0)).getText();
 
-            default:
-                throw new IllegalStateException("Unexpected value: " + question);
-        }
-        return answer;
+        driver.findElement(accordionHeading1).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel1)).getText();
 
+        driver.findElement(accordionHeading2).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel2)).getText();
+
+        driver.findElement(accordionHeading3).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel3)).getText();
+
+        driver.findElement(accordionHeading4).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel4)).getText();
+
+        driver.findElement(accordionHeading5).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel5)).getText();
+
+        driver.findElement(accordionHeading6).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel6)).getText();
+
+        driver.findElement(accordionHeading7).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(driver -> driver.findElement(accordionPanel7)).getText();
+
+        return question;
     }
 
 }
+

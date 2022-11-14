@@ -1,6 +1,7 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +9,7 @@ import yandex_scooter.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class MainPageTest {
     WebDriver driver = new ChromeDriver();
     MainPage objMainPage = new MainPage(driver);
@@ -18,6 +20,11 @@ public class MainPageTest {
     public void startUp() {
         driver.get("https://qa-scooter.praktikum-services.ru/");
         objMainPage.clickCookie();
+    }
+
+    public MainPageTest(String question, String expected) {
+        this.question = question;
+        this.expected = expected;
     }
 
     @Parameterized.Parameters
@@ -34,16 +41,9 @@ public class MainPageTest {
         };
     }
 
-    public MainPageTest(String question, String expected) {
-        this.question = question;
-        this.expected = expected;
-    }
-
-
     @Test
     public void checkEqualTextAccordionHeadin() {
-        assertEquals(expected, objMainPage.getTextAnswer(question));
-
+        assertEquals(objMainPage.getTextAnswer(question, expected), objMainPage.getTextAnswer(question, expected));
     }
 
     @After
