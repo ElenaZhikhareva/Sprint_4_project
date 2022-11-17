@@ -13,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class MainPageTest {
     WebDriver driver = new ChromeDriver();
     MainPage objMainPage = new MainPage(driver);
-    private String expected;
-    private String question;
+    private final String question;
+    private final String answer;
 
     @Before
     public void startUp() {
@@ -22,9 +22,10 @@ public class MainPageTest {
         objMainPage.clickCookie();
     }
 
-    public MainPageTest(String question, String expected) {
+    public MainPageTest(String question, String answer) {
         this.question = question;
-        this.expected = expected;
+        this.answer = answer;
+
     }
 
     @Parameterized.Parameters
@@ -43,12 +44,12 @@ public class MainPageTest {
 
     @Test
     public void checkEqualTextAccordionHeadin() {
-        assertEquals(objMainPage.getTextAnswer(question, expected), objMainPage.getTextAnswer(question, expected));
+        String actualAnswer = objMainPage.getTextAnswer(question);
+        assertEquals(answer, actualAnswer);
     }
 
     @After
     public void teardown() {
         driver.quit();
     }
-
 }
